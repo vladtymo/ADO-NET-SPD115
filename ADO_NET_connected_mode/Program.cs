@@ -1,4 +1,6 @@
-﻿using System.Data.SqlClient;
+﻿using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 public class Doctor
 {
@@ -11,10 +13,9 @@ public class Doctor
 
 public class HospitalDbManager
 {
-    private const string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hospital_lab_6;Integrated Security=True;";
     private SqlConnection connection;
 
-    public HospitalDbManager()
+    public HospitalDbManager(string connectionString)
     {
         connection = new SqlConnection(connectionString);
         connection.Open();
@@ -41,7 +42,7 @@ public class HospitalDbManager
 
         List<Doctor> list = new List<Doctor>();
 
-        while (reader.Read())
+        while (reader.Read()) // read next line
         {
             list.Add(new Doctor()
             {
@@ -52,6 +53,7 @@ public class HospitalDbManager
                 Premium = (decimal)reader["Premium"]
             });
         }
+        reader.Close();
 
         return list;
     }
@@ -59,13 +61,20 @@ public class HospitalDbManager
     // Get Donations Amount of some Sponsor
     public decimal? GetDonationAmount(string sponsor)
     {
+        // SQL injection - можливість вставити SQL скрипт користувача для запуску
         SqlCommand command = connection.CreateCommand();
         command.CommandText = "select SUM(Amount) " +
                               "from Donations as d JOIN Sponsors as s ON d.SponsorId = s.Id " +
-                              $"where s.Name = '{sponsor}'";
+                              "where s.Name = @sponsorName";
+
+        // Add SQL Parameters
+        command.Parameters.Add("@sponsorName", SqlDbType.NVarChar).Value = sponsor;
 
         // TODO: handle null value
-        return (decimal?)command.ExecuteScalar();
+        var result = command.ExecuteScalar();
+
+        if (result is DBNull) return null;
+        return (decimal)result;
     }
 
     // Set Doctor Premium
@@ -73,8 +82,11 @@ public class HospitalDbManager
     {
         SqlCommand command = connection.CreateCommand();
         command.CommandText = "update Doctors " +
-                             $"set Premium = {value} " +
-                             $"where Id = {id}";
+                             $"set Premium = @value " +
+                             $"where Id = @id";
+
+        command.Parameters.Add("@value", SqlDbType.Money).Value = value;
+        command.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
         return command.ExecuteNonQuery();
     }
@@ -96,18 +108,24 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        HospitalDbManager manager = new HospitalDbManager();
+        string connStr = ConfigurationManager.ConnectionStrings["HospitalDb"].ConnectionString;
+        HospitalDbManager manager = new HospitalDbManager(connStr);
 
         Console.WriteLine($"Doctors: {manager.GetDoctorsCount()}");
 
-        //foreach (var d in manager.GetAllDoctors())
-        //{
-        //    Console.WriteLine($"[{d.Id}]: {d.Name} {d.Surname} - {d.Salary} + {d.Premium}");
-        //}
+        foreach (var d in manager.GetAllDoctors())
+        {
+            Console.WriteLine($"[{d.Id}]: {d.Name} {d.Surname} - {d.Salary} + {d.Premium}");
+        }
 
-        Console.WriteLine($"Microsoft donations: {manager.GetDonationAmount("Microsoft")}$");
+        Console.Write("Enter sponsor name: ");
+        string name = Console.ReadLine()!;
+
+        var result = manager.GetDonationAmount(name);
+
+        Console.WriteLine($"{name} donations: {result}$");
 
         manager.SetDoctorPremium(7, 55);
-        manager.Donate(1678, 10, 8);
+        //manager.Donate(1678, 10, 8);
     }
 }
