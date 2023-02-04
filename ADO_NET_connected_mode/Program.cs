@@ -15,8 +15,10 @@ public class HospitalDbManager
 {
     private SqlConnection connection;
 
-    public HospitalDbManager(string connectionString)
+    public HospitalDbManager(string? connectionString = null)
     {
+        connectionString ??= ConfigurationManager.ConnectionStrings["HospitalDb"].ConnectionString;
+
         connection = new SqlConnection(connectionString);
         connection.Open();
     }
