@@ -13,7 +13,7 @@ namespace _05_intro_to_ef
         public int Number { get; set; }
 
         [Required]          // set not null
-        [MaxLength(100)]    // set nvarchar(100)
+        [MaxLength(200)]    // set nvarchar(200)
         public string? Name { get; set; }
 
         [Column("PublishYear")]
