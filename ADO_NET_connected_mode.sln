@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_disconnected_mode", "03_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04_linq", "04_linq\04_linq.csproj", "{CC290DB4-7C2B-41D8-9886-6FE549BD941F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05_intro_to_ef", "05_intro_to_ef\05_intro_to_ef.csproj", "{42F8B37F-D88A-4435-9532-347DFDCE1E47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05_intro_to_ef", "05_intro_to_ef\05_intro_to_ef.csproj", "{42F8B37F-D88A-4435-9532-347DFDCE1E47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06_fluent_api", "06_fluent_api\06_fluent_api.csproj", "{2C62AB29-14E4-46AA-BE76-B38C2AF344C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{42F8B37F-D88A-4435-9532-347DFDCE1E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42F8B37F-D88A-4435-9532-347DFDCE1E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42F8B37F-D88A-4435-9532-347DFDCE1E47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C62AB29-14E4-46AA-BE76-B38C2AF344C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C62AB29-14E4-46AA-BE76-B38C2AF344C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C62AB29-14E4-46AA-BE76-B38C2AF344C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C62AB29-14E4-46AA-BE76-B38C2AF344C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

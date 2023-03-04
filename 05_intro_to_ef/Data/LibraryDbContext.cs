@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace _05_intro_to_ef
+namespace _06_fluent_api
 {
     public class LibraryDbContext : DbContext
     {
