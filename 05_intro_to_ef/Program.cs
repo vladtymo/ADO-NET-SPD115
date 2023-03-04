@@ -19,7 +19,7 @@
                                      .OrderByDescending(x => x.Year);
             foreach (var b in query)
             {
-                Console.WriteLine($"[{b.Id}] - {b.Name} {b.Year}");
+                Console.WriteLine($"[{b.Number}] - {b.Name} {b.Year}");
             }
 
             // ------------- add new items

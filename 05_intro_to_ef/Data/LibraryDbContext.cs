@@ -6,7 +6,7 @@ namespace _05_intro_to_ef
     {
         public LibraryDbContext()
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             // create database if not exists
             Database.EnsureCreated();
         }
