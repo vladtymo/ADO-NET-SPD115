@@ -9,7 +9,7 @@ namespace _06_fluent_api
         {
             //Database.EnsureDeleted();
             // create database if not exists
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -6,6 +6,7 @@ namespace _06_fluent_api
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string? Code { get; set; }
 
         // -------- navigation properties --------
         public ICollection<Author> Authors { get; set; }
