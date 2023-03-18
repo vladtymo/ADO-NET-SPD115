@@ -18,7 +18,7 @@ namespace _06_fluent_api
 
             // ------- entity configurations -------
             modelBuilder.Entity<Book>().HasKey(x => x.Number);  // set primary key
-            modelBuilder.Entity<Book>().Property(x => x.Name)
+            modelBuilder.Entity<Book>().Property(x => x.Title)
                                             .HasMaxLength(200)  // set nvarchar(200)
                                             .IsRequired();      // set not null
             modelBuilder.Entity<Book>().ToTable("Products");    // set table and column name
@@ -57,6 +57,14 @@ namespace _06_fluent_api
                 new Genre() { Id = 2, Name = "Romance"},
                 new Genre() { Id = 3, Name = "Fiction"},
                 new Genre() { Id = 4, Name = "Novel" }
+            });
+            modelBuilder.Entity<Book>().HasData(new[]
+            {
+                new Book() { Number = 1, Title = "Da Vinci Code,The", Year = 2005, Rating = 9.1F, GenreId = 4 },
+                new Book() { Number = 2, Title = "Angels and Demons", Year = 2015, Rating = 5.6F, GenreId = 1 },
+                new Book() { Number = 3, Title = "Harry Potter and the Goblet of Fire", Year = 1997, Rating = 7.1F, GenreId = 2 },
+                new Book() { Number = 4, Title = "Fifty Shades of Grey", Year = 2010, Rating = 9.8F, GenreId = 2 },
+                new Book() { Number = 5, Title = "Twilight", Year = 2022, Rating = 6.7F, GenreId = 1 },
             });
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

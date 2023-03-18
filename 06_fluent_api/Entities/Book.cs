@@ -8,7 +8,7 @@ namespace _06_fluent_api
     public class Book
     {
         public int Number { get; set; }
-        public string? Name { get; set; }
+        public string? Title { get; set; }
         public int Year { get; set; }
         public float? Rating { get; set; }
         public int? GenreId { get; set; }

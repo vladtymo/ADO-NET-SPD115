@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _06_fluent_api;
 
@@ -11,9 +12,10 @@ using _06_fluent_api;
 namespace _06_fluent_api.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    partial class LibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230318152122_ChangeTitleName")]
+    partial class ChangeTitleName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,48 +78,6 @@ namespace _06_fluent_api.Migrations
                     b.HasIndex("GenreId");
 
                     b.ToTable("Products", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Number = 1,
-                            GenreId = 4,
-                            Rating = 9.1f,
-                            Title = "Da Vinci Code,The",
-                            Year = 2005
-                        },
-                        new
-                        {
-                            Number = 2,
-                            GenreId = 1,
-                            Rating = 5.6f,
-                            Title = "Angels and Demons",
-                            Year = 2015
-                        },
-                        new
-                        {
-                            Number = 3,
-                            GenreId = 2,
-                            Rating = 7.1f,
-                            Title = "Harry Potter and the Goblet of Fire",
-                            Year = 1997
-                        },
-                        new
-                        {
-                            Number = 4,
-                            GenreId = 2,
-                            Rating = 9.8f,
-                            Title = "Fifty Shades of Grey",
-                            Year = 2010
-                        },
-                        new
-                        {
-                            Number = 5,
-                            GenreId = 1,
-                            Rating = 6.7f,
-                            Title = "Twilight",
-                            Year = 2022
-                        });
                 });
 
             modelBuilder.Entity("_06_fluent_api.Country", b =>
