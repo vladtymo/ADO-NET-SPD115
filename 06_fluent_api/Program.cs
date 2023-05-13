@@ -108,7 +108,7 @@ namespace _06_fluent_api
                     Console.WriteLine(b.Title);
                 }
             }
-
+            #endregion
         }
     }
 }

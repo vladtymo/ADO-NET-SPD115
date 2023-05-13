@@ -6,9 +6,9 @@ namespace _06_fluent_api
     {
         public LibraryDbContext()
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             // create database if not exists
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
